@@ -1,0 +1,290 @@
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+//<script src="https://unpkg.com/prop-types@15.6.0/prop-types.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script type="text/javascript" src="vanilla-tilt.js"></script>
+<script type="text/babel">
+    /*const rootElement = document.getElementById('root')
+    const element = document.createElement('div')
+    element.textContent = 'Hello World'
+    element.className = 'container'
+    rootElement.appendChild(element)
+    
+    const element = React.createElement('div',{
+    className: 'container',
+    children: 'Hello World'
+    })
+    
+    const props = {
+        className: 'HelloWorld',
+        children: 'Hello Motto'
+    }
+    const element = <div {...props} />
+
+    const Message = props => <div>{props.children}</div>
+    const element = (
+        <Message>Hello Worldssssss</Message>
+    )
+
+    ReactDOM.render(element, rootElement)
+
+    ----------------------------------------------------*/
+    //Make sure we have the correct propType for our variables
+    /* function SayHello(props) {
+        return (
+            <div>
+                Hello {props.firstName} {props.lastName}!
+            </div>
+        )
+    }
+
+    //Validate propTypes as a separate function or
+    SayHello.proptypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+    }
+    //Validate proptypes as a class componenet 
+    Class SayHelloAsClass extends React.Componenet {
+        static propTypes = {
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+        }
+        render() {
+            const {firstName, lastName} = this.this.props
+            return(
+                <div>
+                    Hello {firstName} {lastName}!
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <SayHello firstName={true} />
+        document.getElementById('root')
+    )
+    ------------------------------------------------------*/
+    //Conditionally render a react component
+    /*function Message({message}) {
+        return(
+            <div>
+                {message ? (
+                    <div>{message}</div>
+                    ) : (
+                    <div>No Message</div>
+                )}
+            </div>
+            )
+    }
+    ReactDOM.render(
+        <Message message={null} />,
+        document.getElementById('root'),
+    )
+    -------------------------------------------------------*/
+    //Rerender a React Application
+    /*const rootElement = document.getElementById('root')
+    function tick() {
+        const time = new Date().toLocaleTimeString()
+        const element = <div>It is <input value={time} /></div>
+        ReactDOM.render(element, rootElement)
+    }
+    tick()
+    setInterval(tick,1000)
+    -------------------------------------------------------*/
+    //Style React Componenets
+    /*function Box({style, size, className='', ...rest}) {
+        const sizeClassName = size ? `box--${size}` : ''
+        return(
+            <div 
+                className={`box ${className} ${sizeClassName}`}
+                style={{paddingLeft: 20, ...style}}
+                {...rest}
+            />
+            )
+    }
+    const element = (
+        <div>
+            <Box 
+                size="small"
+                style={{backgroundColor: 'lightblue'}}>
+                small box
+            </Box>
+            <Box 
+                size="medium"
+                style={{backgroundColor: 'lightblue'}}>
+                medium box
+            </Box>
+            <Box
+                size="large"
+                style={{backgroundColor: 'lightblue'}}>
+                large box
+            </Box>
+        </div>)
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+        )
+    ----------------------------------------------------*/
+    //Use event handlers with React
+    /*const state = {eventCount: 0, username: ''}
+
+    function App() {
+        return (
+            <div>
+                <p>
+                    There have been {state.eventCount} events
+                </p>
+                <p>
+                    <button onClick={increment}>Hello</button>
+                </p>
+                <p>You typed: {state.username}</p>
+                <p>
+                    <input onChange={updateUsername}/>
+                </p>
+            </div>
+        )
+    }
+
+    function increment() {
+        setState({
+            eventCount: state.eventCount + 1,
+        })
+    }
+
+    function updateUsername(event) {
+        setState({
+            username: event.target.value,
+        })
+    }
+
+    function setState(newState) {
+        Object.assign(state, newState)
+        renderApp()
+    }
+
+    function renderApp() {
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+            )
+    }
+
+    renderApp()
+    ------------------------------------------------------*/
+    //Use Component State with React
+
+    /*class StopWatch extends React.Component {
+        state = {lapse: 0, running: false}
+        handleRunClick = () => {
+            this.setState(state => {
+                if(state.running) {
+                    clearInterval(this.timer)
+                } else {
+                    const startTime = Date.now() - this.state.lapse
+                    this.timer = setInterval(() => {
+                        this.setState({lapse: Date.now() - startTime,})
+                    }, () => {
+                        console.log(this.state.lapse)
+                    })
+                }
+                return {running: !state.running}
+            })
+        }
+        handleClearClick = () => {
+            clearInterval(this.timer)
+            this.setState({lapse: 0, running: false})
+        }
+        componentWillUnmount() {
+            clearInterval(this.timer)
+        }
+        render() {
+            const {lapse, running} = this.state
+            const buttonStyles = {
+                border: '1px solid #ccc',
+                background: '#fff',
+                fontSize: '2em',
+                padding: 15,
+                margin: 5,
+                width: 200,
+            }
+            return(
+                <div style={{textAlign: 'center'}}>
+                    <label style={{fontSize: '5em', display: 'block'}}>{lapse}ms</label>
+                    <button onClick={this.handleRunClick} style={buttonStyles}>{running ? 'Stop' : 'Start'}</button>
+                    <button onClick={this.handleClearClick} style={buttonStyles}>clear</button>
+                </div>
+            )
+        }
+    }
+
+    const element = <StopWatch />
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+    )
+    -------------------------------------------------------------*/
+    //Use Class Components with React
+    /*class Counter extends React.Component {
+        state = {count: 0}
+        handleClick = () => {
+            this.setState(({count}) => ({
+                count: count + 1,
+            }))
+        }
+        render() {
+            return (
+                <button onClick={this.handleClick}>
+                    {this.state.count}
+                </button>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Counter />,
+        document.getElementById('root'),
+        )
+    -------------------------------------------------------------*/
+    //Manipulate the DOM with React refs
+    class Tilt extends React.Component {
+        componentDidMount() {
+            VanillaTilt.init(this.rootNode, {
+                max: 25, 
+                speed: 400,
+                glare: true,
+                'max-glare': 0.5,
+            })
+            console.log(this.rootNode)
+        }
+        render() {
+            return(
+                <div ref={node => (this.rootNode = node)}
+                    className="tilt-root">
+                    <div className="tilt-child">
+                        <div {...this.props} />
+                    </div>
+                </div>
+                )
+        }
+    }
+
+    const element = (
+        <div className="totally-centered">
+            <Tilt ref={}>
+                <div className="totally-centered">
+                    vanilla-tilt.js
+                </div>
+            </Tilt>
+        </div>
+        )
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+        )
+
+
+</script>
+</body>
