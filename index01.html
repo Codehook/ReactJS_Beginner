@@ -489,7 +489,7 @@
     )
     ----------------------------------------------------------------*/
     //Make HTTP Requests with React
-    class UserCompany extends React.Component {
+    /*class UserCompany extends React.Component {
         state = {company: undefined, loaded: false}
         componentDidMount() {
             axios({
@@ -503,14 +503,14 @@
                     }`,
                 },
                 headers: {
-                    Authorization: `bearer d9b8b19450d5da02aae8c8000109dc53067e2c04`
+                    Authorization: `bearer 1a16e5c8541724db8b7d7c17b9b23e00f478672f`
                 },
             }).then(response => {
                 this.setState({
                     loaded: true,
                     company: response.data.data.user.company,
                 })
-            }).catch(function(error) {
+            }).catch(error => {
                 if(error.response) {
                     console.log(error.response)
                 }
@@ -536,7 +536,7 @@
         element,
         document.getElementById('root'),
     )
-    
+    ---------------------------------------------------------------*/
 
 
 </script>
