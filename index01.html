@@ -1,0 +1,543 @@
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+<script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js"></script>
+<script type="text/babel">
+    /*const rootElement = document.getElementById('root')
+    const element = document.createElement('div')
+    element.textContent = 'Hello World'
+    element.className = 'container'
+    rootElement.appendChild(element)
+    
+    const element = React.createElement('div',{
+    className: 'container',
+    children: 'Hello World'
+    })
+    
+    const props = {
+        className: 'HelloWorld',
+        children: 'Hello Motto'
+    }
+    const element = <div {...props} />
+
+    const Message = props => <div>{props.children}</div>
+    const element = (
+        <Message>Hello Worldssssss</Message>
+    )
+
+    ReactDOM.render(element, rootElement)
+
+    ----------------------------------------------------*/
+    //Make sure we have the correct propType for our variables
+    /* function SayHello(props) {
+        return (
+            <div>
+                Hello {props.firstName} {props.lastName}!
+            </div>
+        )
+    }
+
+    //Validate propTypes as a separate function or
+    SayHello.proptypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+    }
+    //Validate proptypes as a class componenet 
+    Class SayHelloAsClass extends React.Componenet {
+        static propTypes = {
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+        }
+        render() {
+            const {firstName, lastName} = this.this.props
+            return(
+                <div>
+                    Hello {firstName} {lastName}!
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <SayHello firstName={true} />
+        document.getElementById('root')
+    )
+    ------------------------------------------------------*/
+    //Conditionally render a react component
+    /*function Message({message}) {
+        return(
+            <div>
+                {message ? (
+                    <div>{message}</div>
+                    ) : (
+                    <div>No Message</div>
+                )}
+            </div>
+            )
+    }
+    ReactDOM.render(
+        <Message message={null} />,
+        document.getElementById('root'),
+    )
+    -------------------------------------------------------*/
+    //Rerender a React Application
+    /*const rootElement = document.getElementById('root')
+    function tick() {
+        const time = new Date().toLocaleTimeString()
+        const element = <div>It is <input value={time} /></div>
+        ReactDOM.render(element, rootElement)
+    }
+    tick()
+    setInterval(tick,1000)
+    -------------------------------------------------------*/
+    //Style React Componenets
+    /*function Box({style, size, className='', ...rest}) {
+        const sizeClassName = size ? `box--${size}` : ''
+        return(
+            <div 
+                className={`box ${className} ${sizeClassName}`}
+                style={{paddingLeft: 20, ...style}}
+                {...rest}
+            />
+            )
+    }
+    const element = (
+        <div>
+            <Box 
+                size="small"
+                style={{backgroundColor: 'lightblue'}}>
+                small box
+            </Box>
+            <Box 
+                size="medium"
+                style={{backgroundColor: 'lightblue'}}>
+                medium box
+            </Box>
+            <Box
+                size="large"
+                style={{backgroundColor: 'lightblue'}}>
+                large box
+            </Box>
+        </div>)
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+        )
+    ----------------------------------------------------*/
+    //Use event handlers with React
+    /*const state = {eventCount: 0, username: ''}
+
+    function App() {
+        return (
+            <div>
+                <p>
+                    There have been {state.eventCount} events
+                </p>
+                <p>
+                    <button onClick={increment}>Hello</button>
+                </p>
+                <p>You typed: {state.username}</p>
+                <p>
+                    <input onChange={updateUsername}/>
+                </p>
+            </div>
+        )
+    }
+
+    function increment() {
+        setState({
+            eventCount: state.eventCount + 1,
+        })
+    }
+
+    function updateUsername(event) {
+        setState({
+            username: event.target.value,
+        })
+    }
+
+    function setState(newState) {
+        Object.assign(state, newState)
+        renderApp()
+    }
+
+    function renderApp() {
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+            )
+    }
+
+    renderApp()
+    ------------------------------------------------------*/
+    //Use Component State with React
+
+    /*class StopWatch extends React.Component {
+        state = {lapse: 0, running: false}
+        handleRunClick = () => {
+            this.setState(state => {
+                if(state.running) {
+                    clearInterval(this.timer)
+                } else {
+                    const startTime = Date.now() - this.state.lapse
+                    this.timer = setInterval(() => {
+                        this.setState({lapse: Date.now() - startTime,})
+                    }, () => {
+                        console.log(this.state.lapse)
+                    })
+                }
+                return {running: !state.running}
+            })
+        }
+        handleClearClick = () => {
+            clearInterval(this.timer)
+            this.setState({lapse: 0, running: false})
+        }
+        componentWillUnmount() {
+            clearInterval(this.timer)
+        }
+        render() {
+            const {lapse, running} = this.state
+            const buttonStyles = {
+                border: '1px solid #ccc',
+                background: '#fff',
+                fontSize: '2em',
+                padding: 15,
+                margin: 5,
+                width: 200,
+            }
+            return(
+                <div style={{textAlign: 'center'}}>
+                    <label style={{fontSize: '5em', display: 'block'}}>{lapse}ms</label>
+                    <button onClick={this.handleRunClick} style={buttonStyles}>{running ? 'Stop' : 'Start'}</button>
+                    <button onClick={this.handleClearClick} style={buttonStyles}>clear</button>
+                </div>
+            )
+        }
+    }
+
+    const element = <StopWatch />
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+    )
+    -------------------------------------------------------------*/
+    //Use Class Components with React
+    /*class Counter extends React.Component {
+        state = {count: 0}
+        handleClick = () => {
+            this.setState(({count}) => ({
+                count: count + 1,
+            }))
+        }
+        render() {
+            return (
+                <button onClick={this.handleClick}>
+                    {this.state.count}
+                </button>
+            )
+        }
+    }
+    ReactDOM.render(
+        <Counter />,
+        document.getElementById('root'),
+        )
+    -------------------------------------------------------------*/
+    //Manipulate the DOM with React refs
+    /*class Tilt extends React.Component {
+        componentDidMount() {
+            VanillaTilt.init(this.rootNode, {
+                max: 25, 
+                speed: 400,
+                glare: true,
+                'max-glare': 0.5,
+            })
+            console.log(this.rootNode)
+        }
+        render() {
+            return(
+                <div ref={node => (this.rootNode = node)}
+                    className="tilt-root">
+                    <div className="tilt-child">
+                        <div {...this.props} />
+                    </div>
+                </div>
+                )
+        }
+    }
+
+    const element = (
+        <div className="totally-centered">
+            <Tilt ref={}>
+                <div className="totally-centered">
+                    vanilla-tilt.js
+                </div>
+            </Tilt>
+        </div>
+        )
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+        )
+    -------------------------------------------------------------*/
+    //Make Basic Forms with React
+    /*class NameForm extends React.Component {
+        handleSubmit = event => {
+            event.preventDefault()
+            console.log({target: event.target})
+            console.log(event.target[0].value)
+            console.log(event.target.elements.username.value,
+            )
+            console.log(this.inputNode.value)
+        }
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" name="username" 
+                        ref={node => (this.inputNode = node)} />
+                    </label>
+                    <button type="submit">Submit</button>
+                </form>
+                )
+        }
+    }
+
+    ReactDOM.render(
+        <div />,
+        document.getElementById('root')
+    )
+    ------------------------------------------------------------*/
+    //Make Dynamic Forms with React
+    /*class NameForm extends React.Component {
+        state = {error: null}
+        handleSubmit = event => {
+            event.preventDefault()
+            const value = event.target.elements.username.value
+            const error = this.props.getErrorMessage(value,)
+            if(error) {
+                alert(`error: ${error}`)
+            } else {
+                alert(`error: ${value}`)
+            }
+        }
+        handleChange = (event) => {
+            const {value} = event.target
+            this.setState({
+                error: this.props.getErrorMessage(value),
+            })
+        }
+        componentDidMount() {
+            this.setState({
+                error: this.props.getErrorMessage(''),
+            })
+        }
+
+        render() {
+            const {error} = this.state
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" onChange={this.handleChange} name="username" />
+                    </label>
+                    {error ? (<div style={{color: 'red'}}>{error}</div>) : null}
+                    <button disabled={Boolean(error)} type="submit">Submit</button>
+                </form>
+                )
+        }
+    }
+
+    ReactDOM.render(
+        <NameForm getErrorMessage={value => {
+            if(value.length < 3) {
+                return `Value must be at least 3 characters`
+            }
+            if(!value.includes('s')) {
+                return `Value does not include "s" but it should`
+            }
+            return null
+        }}
+        />,
+        document.getElementById('root')
+    )
+    ----------------------------------------------------------------*/
+    //Controlling Form Values With React
+    /*class MyFancyForm extends React.Component {
+        static availableOptions = [
+            'apple',
+            'grape',
+            'cherry',
+            'orange',
+            'pear',
+            'peach',
+        ]
+        state = {multiline: '', commaSeparated: ''}
+        handleCommaSeparateChange = event => {
+            const {value} = event.target
+            this.setState({
+                commaSeparated: value,
+                multiline: value.split(',').map(v => v.trim()).filter(Boolean).join('\n')
+            })
+        }
+        handleMultilineChange = event => {
+            const {value} = event.target
+            this.setState({
+                multiline: value,
+            })
+        }
+        handleMultiSelectChange = event => {
+            console.log('handleMultiSelectChanged')
+        }
+        render() {
+            const {commaSeparated, multiline} = this.state
+            return(
+                <form>
+                    <div>
+                        <label>
+                            comma separated values:
+                            <br />
+                            <input type="text" 
+                            value={commaSeparated}
+                            onChange={this.handleCommaSeparatedChange} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            multiline values:
+                            <br />
+                            <textarea rows={MyFancyForm.availableOptions.length}
+                            value={multiline} 
+                            onChange={this.handleMultilineChange} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            multiSelect values:
+                            <br />
+                            <select multiple 
+                            size={MyFancyForm.availableOptions.length} 
+                            onChange={this.handleMultiSelectChange} 
+                            >
+                                <option> {{availableOptions}} </option>
+                            </select>
+                        </label>
+                    </div>
+                </form>
+                )
+        }
+    }
+
+    ReactDOM.render(
+        <MyFancyForm />,
+        document.getElementById('root')
+    )
+    ---------------------------------------------------------------*/
+    //Use the key prop when Rendering a List with React
+    /*class App extends React.Component {
+        static allItems = [
+        {id: 'a', value: 'apple'},
+        {id: 'o', value: 'orange'},
+        {id: 'g', value: 'grape'},
+        {id: 'p', value: 'pear'},
+        ]
+        state = {items: []}
+        addItem = () => {
+            this.setState(({items}) => ({
+                items: [
+                    ...items,
+                    App.allItems.find(i => !items.includes(i),
+                    ),
+                ],
+            }))
+        }
+        removeItem = item => {
+            this.setState(({items}) => ({
+                items: items.filter(i => i !== item),
+            }))
+        }
+        render() {
+            const {items} = this.state
+            return(
+                <div>
+                    <button disabled={items.length >= App.allItems.length}
+                    onClick={this.addItem}>
+                    +
+                    </button>
+                    {items.map((i, index) => (
+                        <div key={i.id}>
+                            <button onClick={() => this.removeItem(i)}>
+                            -
+                            </button>
+                            {i.value}:
+                            <input />
+                        </div>
+                        ))}
+                </div>
+                )
+        }
+    }
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+    )
+    ----------------------------------------------------------------*/
+    //Make HTTP Requests with React
+    class UserCompany extends React.Component {
+        state = {company: undefined, loaded: false}
+        componentDidMount() {
+            axios({
+                url: 'https://api.github.com/graphql',
+                method: 'post',
+                data: {
+                    query: `{
+                        user(login: "${this.props.username}") {
+                            company
+                        }
+                    }`,
+                },
+                headers: {
+                    Authorization: `bearer d9b8b19450d5da02aae8c8000109dc53067e2c04`
+                },
+            }).then(response => {
+                this.setState({
+                    loaded: true,
+                    company: response.data.data.user.company,
+                })
+            }).catch(function(error) {
+                if(error.response) {
+                    console.log(error.response)
+                }
+            })
+        }
+        render() {
+            return this.state.loaded
+             ? this.state.company || 'Unknown' 
+             : '...'
+        }
+    }
+    const username = 'Codehook'
+    const element = (
+        <div> 
+            <div>
+                {`@${username} works at `}
+                <UserCompany username={username} />
+            </div>
+        </div>
+    )
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root'),
+    )
+    
+
+
+</script>
+</body>
